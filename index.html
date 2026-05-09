@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Hafrak Fashion | Bespoke African Wear & Tailoring | Takoradi, Ntankoful</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FFFCF5;
+            color: #1F2A3E;
+            scroll-behavior: smooth;
+        }
+
+        /* Vibrant Color Palette */
+        :root {
+            --coral: #FF6B4A;
+            --teal: #00B4A0;
+            --sunset: #FFB347;
+            --deep-purple: #6B2E6E;
+            --gold: #F4B41A;
+            --white: #FFFFFF;
+            --light-bg: #FFF3E8;
+            --shadow-sm: 0 15px 30px -12px rgba(0,0,0,0.1);
+            --shadow-md: 0 25px 35px -16px rgba(0,0,0,0.15);
+            --contact-bg: #FEF4E8;
+            --contact-accent: #D96C3B;
+            --footer-new: #2C3E2F;
+            --footer-text: #E9E5D6;
+        }
+
+        h1, h2, h3, .logo, .nav-links a, .btn, .section-title {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* Sticky Navigation */
+        .navbar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            z-index: 1100;
+            padding: 0.8rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-bottom: 3px solid var(--coral);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--coral), var(--teal));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo span {
+            background: linear-gradient(135deg, var(--sunset), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            align-items: center;
+            list-style: none;
+        }
+        .nav-links li a {
+            text-decoration: none;
+            color: #1F2A3E;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .nav-links li a:hover {
+            color: var(--coral);
+        }
+        .social-top {
+            display: flex;
+            gap: 1rem;
+        }
+        .social-top a {
+            color: var(--deep-purple);
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+        .social-top a:hover {
+            color: var(--coral);
+            transform: translateY(-2px);
+        }
+        .dropdown {
+            position: relative;
+        }
+        .dropdown > a {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .dropdown-menu {
+            position: absolute;
+            top: 2.5rem;
+            left: 0;
+            background: white;
+            min-width: 220px;
+            border-radius: 20px;
+            padding: 0.8rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.2s;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #ffe0cc;
+            z-index: 1200;
+        }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+        .dropdown-menu li a {
+            display: block;
+            padding: 0.6rem 1.5rem;
+            font-weight: 500;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 1.7rem;
+            cursor: pointer;
+            color: var(--coral);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .slideshow-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .slide.active { opacity: 1; }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 2;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 6rem 1rem;
+            color: white;
+        }
+        .hero-content h1 { font-size: 3.2rem; margin-bottom: 1.2rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.3); }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 2rem; }
+        .btn {
+            display: inline-block;
+            padding: 0.9rem 2.5rem;
+            font-weight: 700;
+            border-radius: 60px;
+            text-decoration: none;
+            transition: 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-primary { background: var(--coral); color: white; box-shadow: 0 8px 16px rgba(0,0,0,0.2); }
+        .btn-primary:hover { background: #e55a3c; transform: translateY(-3px); }
+
+        section { padding: 80px 0; }
+        .section-title {
+            font-size: 2.6rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--deep-purple);
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--sunset);
+            margin: 0.8rem auto 0;
+            border-radius: 4px;
+        }
+
+        /* Detailed Service Sections */
+        .service-detail {
+            background: white;
+            border-radius: 48px;
+            margin-bottom: 3rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s;
+        }
+        .service-detail:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+        .service-detail-inner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+        .service-detail-img {
+            flex: 1;
+            min-width: 280px;
+        }
+        .service-detail-img img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+        .service-detail-content {
+            flex: 1.2;
+            padding: 2rem;
+        }
+        .service-detail-content h3 {
+            font-size: 2rem;
+            color: var(--coral);
+            margin-bottom: 1rem;
+        }
+        .service-detail-content p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #2c3e4e;
+        }
+        .service-detail-content ul {
+            margin: 1rem 0 0 1.5rem;
+            color: #4a5b6e;
+        }
+        .service-detail-content li { margin: 0.5rem 0; }
+
+        /* About Section */
+        .about-story {
+            background: #FFF9F2;
+            border-radius: 48px;
+            padding: 3rem;
+            box-shadow: var(--shadow-sm);
+        }
+        .about-flex-new {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 3rem;
+        }
+        .about-text-new { flex: 1.2; }
+        .about-text-new h3 { font-size: 2rem; color: var(--coral); margin-bottom: 1rem; }
+        .about-text-new p { line-height: 1.7; font-size: 1.05rem; color: #2c3e4e; }
+        .about-image-new { flex: 1; text-align: center; }
+        .about-image-new img {
+            width: 100%;
+            max-width: 420px;
+            border-radius: 32px;
+            object-fit: cover;
+            box-shadow: var(--shadow-md);
+            border: 4px solid var(--gold);
+        }
+
+        /* Our Work Gallery */
+        .craftsmanship-text {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 3rem auto;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            background: #FFF7F0;
+            padding: 2rem;
+            border-radius: 48px;
+        }
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1.8rem;
+        }
+        .work-item {
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s;
+        }
+        .work-item:hover { transform: scale(1.02); }
+        .work-item img { width: 100%; height: 300px; object-fit: cover; }
+
+        body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    overflow: hidden;
+    padding: 20px;
+}
+
+.section {
+    display: flex; /* Use Flexbox for easy layout */
+    flex-direction: row;  /* Images in a horizontal row */
+    flex-wrap: wrap;  /* Allow sections to wrap on smaller screens */
+    background-color: #fff;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.section img {
+    width: 15%; /* Adjust image width as needed */
+    height: 60%;
+    flex-shrink: 0; /* Prevent images from shrinking */
+    border-radius: 8px;
+    margin-bottom: 20px;  /* Add space between image and text */
+}
+
+.text-content {
+    padding: 20px;
+    width: 50%; /* Take up the full width */
+    box-sizing: border-box; /* Include padding and border in the element's total width */
+}
+
+.text-content h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.text-content p {
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+
+/* Responsive Design (adjust for smaller screens) */
+@media (max-width: 700px) {
+    .section {
+        flex-direction: row; /* Stack sections horizontal on small screens */
+    }
+
+    .section img {
+        width: 30%;  /* Make images full width on smaller screens */
+    }
+
+    .text-content {
+        width: 30%; /* Take up the full width */
+    }
+}
+
+
+        /* Reviews */
+        .reviews-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .review-card {
+            flex: 1;
+            background: white;
+            padding: 2rem;
+            border-radius: 32px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            border-top: 5px solid var(--sunset);
+        }
+        .stars { color: var(--gold); font-size: 1.3rem; }
+
+        /* Reset and base styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: #fefaf5;
+    padding: 2rem 1rem;
+  }
+
+  /* FAQ Container */
+  .faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: transparent;
+  }
+
+  /* Section Title */
+  .faq-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #6B2E6E;
+    margin-bottom: 2rem;
+    font-family: 'Playfair Display', serif;
+  }
+  .faq-title:after {
+    content: '';
+    display: block;
+    width: 70px;
+    height: 3px;
+    background: #FFB347;
+    margin: 0.6rem auto 0;
+    border-radius: 4px;
+  }
+
+  /* Individual FAQ Item */
+  .faq-item {
+    background: #ffffff;
+    margin-bottom: 1rem;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #ffe0cc;
+    transition: all 0.2s ease;
+  }
+
+  /* FAQ Question Button - Tappable area */
+  .faq-question {
+    width: 100%;
+    background: white;
+    border: none;
+    padding: 1.2rem 1.5rem;
+    text-align: left;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: #1a2c3e;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    transition: background 0.2s ease;
+  }
+
+  .faq-question:hover {
+    background: #fff8f2;
+  }
+
+  .faq-question:active {
+    background: #ffefe5;
+  }
+
+  /* Focus indicator for accessibility */
+  .faq-question:focus {
+    outline: 2px solid #FF6B4A;
+    outline-offset: 2px;
+    border-radius: 20px;
+  }
+
+  .question-text {
+    flex: 1;
+    line-height: 1.4;
+    font-size: 1rem;
+  }
+
+  /* Plus/Minus Icon */
+  .faq-icon {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #FF6B4A;
+    width: 28px;
+    text-align: center;
+    transition: transform 0.2s ease;
+    display: inline-block;
+  }
+
+  /* Answer Panel - hidden by default */
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #fefaf5;
+    border-top: 0px solid transparent;
+  }
+
+  /* When FAQ item is active, show answer */
+  .faq-item.active .faq-answer {
+    max-height: 600px;  /* Large enough for long answers */
+    border-top: 1px solid rgba(255, 107, 74, 0.2);
+  }
+
+  .answer-content {
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+    line-height: 1.6;
+    color: #2c3e50;
+    font-size: 0.95rem;
+  }
+
+  .answer-content p {
+    margin-bottom: 0.75rem;
+  }
+
+  .answer-content ul,
+  .answer-content ol {
+    margin-left: 1.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .answer-content li {
+    margin: 0.4rem 0;
+  }
+
+  /* Active state left border indicator */
+  .faq-item.active {
+    border-left: 4px solid #FF6B4A;
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 640px) {
+    .faq-question {
+      padding: 1rem 1.2rem;
+    }
+    .question-text {
+      font-size: 0.95rem;
+    }
+    .answer-content {
+      padding: 0.8rem 1.2rem 1.2rem;
+    }
+    .faq-icon {
+      font-size: 1.2rem;
+      width: 24px;
+    }
+  }
+
+
+        /* Contact Section */
+        .contact-section { background: var(--contact-bg); }
+        .contact-split {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            background: #FFFFFF;
+            border-radius: 48px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+        }
+        .contact-left, .contact-right { flex: 1; }
+        input, select, textarea {
+            width: 100%;
+            padding: 0.9rem;
+            border-radius: 40px;
+            border: 1px solid #F0C9A8;
+            background: #FFFEFB;
+        }
+        button[type="submit"] {
+            background: var(--contact-accent);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 0.9rem;
+            border-radius: 60px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button[type="submit"]:hover { background: #bd562c; transform: translateY(-2px); }
+        .phone-link {
+            display: inline-block;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--contact-accent);
+            text-decoration: none;
+            margin: 0.5rem 0;
+        }
+        .map-container { border-radius: 28px; overflow: hidden; border: 2px solid var(--contact-accent); }
+
+        /* Footer */
+        footer {
+            background: var(--footer-new);
+            color: var(--footer-text);
+            padding: 2rem;
+            text-align: center;
+            border-top: 4px solid var(--gold);
+        }
+        .footer-social a {
+            color: var(--footer-text);
+            font-size: 1.8rem;
+            margin: 0 0.9rem;
+            display: inline-block;
+            transition: 0.2s;
+        }
+        .footer-social a:hover { color: var(--gold); transform: translateY(-4px); }
+
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .social-top { display: none; }
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 1.5rem;
+                transform: translateX(100%);
+                display: none;
+            }
+            .nav-links.active { display: flex; transform: translateX(0); }
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                display: none;
+                box-shadow: none;
+                padding-left: 1rem;
+            }
+            .dropdown.active .dropdown-menu { display: block; }
+            .hero-content h1 { font-size: 2rem; }
+            .service-detail-inner { flex-direction: column; }
+            .service-detail-img img { height: 280px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">Hafrak <span>Fashion</span></div>
+        <div class="menu-toggle" id="mobileToggle"><i class="fas fa-bars"></i></div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home">Home</a></li>
+            <li class="dropdown" id="servicesDropdown">
+                <a href="#">Services <i class="fas fa-chevron-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#custom-tailoring-detail">Custom Tailoring</a></li>
+                    <li><a href="#alterations-detail">Professional Alterations</a></li>
+                    <li><a href="#repair-detail">Quick Repair</a></li>
+                    <li><a href="#bridal-detail">Bridal Alterations</a></li>
+                    <li><a href="#wedding-detail">Wedding Dresses</a></li>
+                </ul>
+            </li>
+            <li><a href="#why-us">Why Us</a></li>
+            <li><a href="#work">Our Work</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#faqs">FAQs</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="social-top">
+            <a href="https://wa.me/233508208477"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-snapchat-ghost"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Slideshow -->
+<section id="home" class="hero">
+    <div class="slideshow-bg" id="slideshow">
+        <div class="slide" style="background-image: url('https://images.pexels.com/photos/11916879/pexels-photo-11916879.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+        <div class="slide" style="background-image: url('https://images.pexels.com/photos/5453901/pexels-photo-5453901.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+        <div class="slide" style="background-image: url('image/4.jpeg');"></div>
+        <div class="slide" style="background-image: url('image/scre.jpg');"></div>
+        <div class="slide" style="background-image: url('image/Weeding.jpeg');"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>Custom Garments & Experts in All Kinds of African Dresses & Designs</h1>
+        <p>Where culture meets modern elegance. Located in the heart of Takoradi, Ntankoful.</p>
+        <a href="#contact" class="btn btn-primary">Book Your Consultation →</a>
+    </div>
+</section>
+
+<main>
+    <!-- Detailed Service Sections with Images & Descriptions -->
+    <section id="services-detailed">
+        <div class="container">
+            <h2 class="section-title">Our Services in Detail</h2>
+            
+            <!-- Custom Tailoring -->
+            <div id="custom-tailoring-detail" class="service-detail">
+                <div class="service-detail-inner">
+                    <div class="service-detail-img">
+                        <img src="image/6.jpeg" alt="Custom tailoring - bespoke African wear">
+                    </div>
+                    <div class="service-detail-content">
+                        <h3>✂️ Custom Tailoring</h3>
+                        <p>At Hafrak Fashion, custom tailoring is an art form. We create bespoke garments that celebrate your unique identity—whether it's a stunning Kente gown for a wedding, a sharp corporate suit, or a traditional Kaftan that honors heritage. Our master tailors work closely with you from concept to final fitting, ensuring every stitch reflects your vision.</p>
+                        <p><strong>What we offer:</strong> Men's and women's bespoke African wear, corporate suits, casual outfits, Kente/Ankara masterpieces, and traditional Kaftans. Choose from premium fabrics including silk, lace, cotton, and authentic African prints.</p>
+                        <ul>
+                            <li>Personal design consultation</li>
+                            <li>Precise measurements & multiple fittings</li>
+                            <li>Hand-finished details & embroidery</li>
+                            <li>Perfect fit guaranteed</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Professional Alterations -->
+            <div id="alterations-detail" class="service-detail">
+                <div class="service-detail-inner">
+                    <div class="service-detail-img">
+                        <img src="image/7.jpeg" alt="Professional alterations - precise fitting">
+                    </div>
+                    <div class="service-detail-content">
+                        <h3>🪡 Professional Alterations</h3>
+                        <p>Sometimes your favorite garments just need a little adjustment to feel like new again. Our professional alteration services breathe fresh life into your wardrobe. Whether it's taking in a dress that's too loose, shortening hemlines, or adjusting waistbands, we ensure every piece fits you flawlessly.</p>
+                        <p><strong>Our alteration expertise:</strong> Resizing (taking in or letting out), hemming pants and skirts, sleeve adjustments, waist alterations, restyling old outfits, and custom modifications.</p>
+                        <ul>
+                            <li>Fast turnaround (3-7 days for most alterations)</li>
+                            <li>Free fitting assessment</li>
+                            <li>Invisible mending and restyling</li>
+                            <li>Preserve the original design integrity</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Repair -->
+            <div id="repair-detail" class="service-detail">
+                <div class="service-detail-inner">
+                    <div class="service-detail-img">
+                        <img src="image/5.jpeg" alt="Quick repair - garment restoration">
+                    </div>
+                    <div class="service-detail-content">
+                        <h3>⚡ Quick Repair</h3>
+                        <p>Unexpected rips, broken zippers, or loose buttons shouldn't keep you from wearing your favorite clothes. Our quick repair service is designed for urgent fixes with exceptional quality. We understand that life happens — and we're here to restore your garments promptly.</p>
+                        <p><strong>Common repairs we handle:</strong> Torn seams, zipper replacement, button reattachment, hole patching (invisible mending), hem repair, and strap adjustments.</p>
+                        <ul>
+                            <li>Same-day or 24-hour rush service available</li>
+                            <li>Affordable pricing</li>
+                            <li>Expert stitching that blends seamlessly</li>
+                            <li>Extend the life of your cherished clothes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bridal Alterations -->
+            <div id="bridal-detail" class="service-detail">
+                <div class="service-detail-inner">
+                    <div class="service-detail-img">
+                        <img src="image/weeding 2.jpeg" alt="Bridal alterations - perfect wedding fit">
+                    </div>
+                    <div class="service-detail-content">
+                        <h3>💍 Bridal Alterations</h3>
+                        <p>Your wedding day deserves perfection. Our bridal alteration specialists understand the importance of a flawless fit for your dream gown. Whether you've purchased a dress that needs adjustments or are customizing a family heirloom, we handle delicate fabrics and intricate beadwork with the utmost care.</p>
+                        <p><strong>Bridal services:</strong> Bustle installation, hemming for different heel heights, taking in/letting out bodice, strap adjustments, adding sleeves, and customizing necklines. We work with lace, satin, tulle, and beaded fabrics.</p>
+                        <ul>
+                            <li>Dedicated bridal fitting sessions (2-3 fittings)</li>
+                            <li>Preserve intricate beadwork and embroidery</li>
+                            <li>Pressure-free, supportive consultations</li>
+                            <li>Timeline planning to meet your wedding date</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wedding Dress & Design -->
+            <div id="wedding-detail" class="service-detail">
+                <div class="service-detail-inner">
+                    <div class="service-detail-img">
+                        <img src="image/9.jpeg" alt="Wedding dress & design - custom bridal gown">
+                    </div>
+                    <div class="service-detail-content">
+                        <h3>👰 Wedding Dress & Design</h3>
+                        <p>Imagine walking down the aisle in a gown designed exclusively for you. Our wedding dress design service brings your dream dress to life—from initial sketches to the final stitch. We blend traditional African elegance with contemporary bridal trends, incorporating Kente, lace, beads, or any fabric you desire.</p>
+                        <p><strong>Design process:</strong> Inspiration consultation → custom sketches → fabric selection → toile fitting → final couture gown. Whether you desire a ball gown, mermaid silhouette, A-line, or modern minimalist style, we create a dress that reflects your personality.</p>
+                        <ul>
+                            <li>Fully bespoke from scratch</li>
+                            <li>Incorporate family heirlooms or specific textiles</li>
+                            <li>Beading, embroidery, and unique accents</li>
+                            <li>Complete support from design to delivery</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-story">
+                <div class="about-flex-new">
+                    <div class="about-text-new">
+                        <h3>Elevate Your Style with Custom Creations</h3>
+                        <p>At Hafrak Fashion, we believe that every dress tells a story. Founded in the heart of Takoradi, Ntankoful, Ghana, our mission is to craft bespoke dresses that not only fit impeccably but also resonate with your individual style. We specialize in personalized fittings and expert alterations, ensuring that each piece complements your unique silhouette. Whether you're preparing for a memorable event or looking to refresh your wardrobe, our skilled artisans are here to provide tailored solutions that bring your vision to life. Feel confident and comfortable in every stitch with Hafrak Fashion.</p>
+                    </div>
+                    <div class="about-image-new">
+                        <img src="image/6.jpeg" alt="Beautiful custom garment - Hafrak Fashion masterpiece">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Work Gallery -->
+    <section id="work" style="background: #FFF1E8;">
+        <div class="container">
+            <h2 class="section-title">Our Work</h2>
+            <div class="craftsmanship-text">
+                <strong>✨ Discover Our Craftsmanship ✨</strong><br><br>
+               At Hafrak Fashion, our image gallery showcases the artistry and dedication we pour into every custom dress we create. Each piece is a testament to our commitment to exceptional quality and personalized style, featuring unique designs that cater to every occasion. From elegant evening gowns to tailored everyday wear, each photograph tells a story of craftsmanship and passion, inviting you to experience the transformative power of custom clothing crafted just for you. Explore our gallery and envision your next perfect outfit, meticulously designed and fitted with care.
+            </div>
+            <div class="work-grid">
+                <div class="work-item"><img src="image/caf2.jpeg" alt="Wedding dress"></div>
+                <div class="work-item"><img src="image/female caf.jpeg" alt="Elegant African gown"></div>
+                <div class="work-item"><img src="image/female.jpeg" alt="Bridal alteration"></div>
+                <div class="work-item"><img src="image/Full Length [59 Inches] Asooke Bubu with Embroidery.jpg" alt="Ankara fusion"></div>
+                <div class="work-item"><img src="image/8.peg.jpeg" alt="Men's suit"></div>
+                <div class="work-item"><img src="image/Weeding.jpeg" alt="Men's caftan"></div>
+                <div class="work-item"><img src="image/African print short kaftan dress _ Ankara short kaftan dress _ African plus size dress.jpg" alt="Kente dress"></div>
+                <div class="work-item"><img src="image/2.jpeg" alt="Tailored blazer"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us, Reviews, FAQ, Contact sections remain similar but updated -->
+    <section id="why-us"><div class="container" style="text-align:center;"><h2 class="section-title">Why Hafrak Fashion?</h2><p style="max-width:750px; margin:0 auto; font-size:1.2rem;">Vibrant creativity, Authentic Craftsmanship, and Passion for African textiles.</p><h3>Every design tells your story.</h3></div></section>
+
+    
+<div class="container">
+
+        <div class="section personalized-designs">
+            <img src="image/caf2.jpeg" alt="Personalized Designs">
+            <div class="text-content">
+                <h3>Personalized Designs</h3>
+                <p>At Hafrak Fashion, we understand that every client has a unique style. Our expert seamstresses work with you to create custom dresses that truly reflect your individuality, ensuring that you stand out for any occasion.</p>
+            </div>
+        </div>
+
+        <div class="section expert-tailoring">
+            <img src="image/female caf.jpeg" alt="Expert Tailoring And Alterations">
+            <div class="text-content">
+                <h3>Expert Tailoring And Alterations</h3>
+                <p>We offer professional tailoring and alterations services to guarantee that every garment fits you perfectly. Whether you have a vision for a new dress or need adjustments on your favorite outfit, our skilled team is here.</p>
+            </div>
+        </div>
+
+        <div class="section quality-craftsmanship">
+            <img src="image/male caf.jpeg" alt="Quality Craftsmanship">
+            <div class="text-content">
+                <h3>Quality Craftsmanship</h3>
+                <p>Our commitment to quality craftsmanship ensures that every dress is made with precision and care. We use only the finest fabrics and techniques to create durable, beautiful garments you’ll cherish for years to.</p>
+            </div>
+        </div>
+
+        <div class="section local-expertise">
+            <img src="image/suit.jpeg" alt="Local Expertise With A Personal Touch">
+            <div class="text-content">
+                <h3>Local Expertise With A Personal Touch</h3>
+                <p>Being based in Fijai, we pride ourselves on our local roots and understand the tastes and preferences of our community. Our personalized approach means you receive exceptional service tailored to your needs.</p>
+            </div>
+        </div>
+
+    <section id="reviews" style="background:#FFF1E8;"><div class="container"><h2 class="section-title">Client Love</h2><div class="reviews-grid"><div class="review-card"><div class="stars">★★★★★</div><p>"Hafrak turned my vision into a masterpiece! The fit was perfect."</p><h4>- Ekua Hannah</h4></div><div class="review-card"><div class="stars">★★★★★</div><p>"Stunning African designs and exceptional tailoring. Highly recommended in Takoradi!"</p><h4>- Maame Lizzy</h4></div><div class="review-card"><div class="stars">★★★★★</div><p>"Professional, timely, and very creative. My wedding dress was everything!"</p><h4>- Amponsah</h4></div></div></div></section>
+
+    <div class="faq-container">
+  <h2 class="faq-title">Frequently Asked Questions</h2>
+
+  <!-- FAQ 1 -->
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false">
+      <span class="question-text">📌 What types of custom dresses do you offer?</span>
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <div class="answer-content">
+        <p>We offer a wide variety of custom-made dresses tailored to your needs:</p>
+        <ul>
+          <li><strong>Wedding gowns</strong> – bespoke designs from classic to modern African fusion.</li>
+          <li><strong>Traditional African attire</strong> – Kente, Ankara, Kaftan, Agbada for men and women.</li>
+          <li><strong>Evening & party dresses</strong> – perfect for birthdays, weddings, and special events.</li>
+          <li><strong>Corporate suits</strong> – sharp, professional fits for business and formal occasions.</li>
+          <li><strong>Casual & everyday wear</strong> – stylish yet comfortable custom pieces.</li>
+        </ul>
+        <p>Every garment is made to your exact measurements and style preferences. <strong>Book a free consultation</strong> to bring your vision to life.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ 2 -->
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false">
+      <span class="question-text">🪡 How does the fitting process work?</span>
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <div class="answer-content">
+        <p>Our fitting process is thorough and designed for a flawless result:</p>
+        <ol style="margin-left: 1.2rem;">
+          <li><strong>Consultation</strong> – Discuss your vision, fabric, and design details.</li>
+          <li><strong>Precise Measurements</strong> – We take full body measurements for accuracy.</li>
+          <li><strong>Toile (test garment)</strong> – A mock-up in calico to check the fit and silhouette.</li>
+          <li><strong>First Fitting</strong> – Adjustments and fine-tuning on the actual fabric.</li>
+          <li><strong>Final Fitting</strong> – Last checks before completion and delivery.</li>
+        </ol>
+        <p>For complex garments like wedding dresses, we schedule <strong>2-3 fittings</strong> to guarantee perfection. We never rush the process – your comfort and satisfaction come first.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ 3 -->
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false">
+      <span class="question-text">✂️ Do you provide alteration services for existing garments?</span>
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <div class="answer-content">
+        <p><strong>Yes, absolutely!</strong> We offer professional alteration services for garments you already own:</p>
+        <ul>
+          <li><strong>Resizing</strong> – taking in or letting out waist, chest, hips.</li>
+          <li><strong>Hemming</strong> – pants, skirts, dresses, sleeves.</li>
+          <li><strong>Waist adjustments & taking in/out sides.</strong></li>
+          <li><strong>Restyling old outfits</strong> – transform outdated clothing into modern designs.</li>
+          <li><strong>Repairs</strong> – fix rips, replace zippers, mend seams, reattach buttons.</li>
+        </ul>
+        <p>Bring any garment to our Ntankoful studio for a <strong>free assessment and quote</strong>. Most alterations are completed within 3-7 days.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ 4 -->
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false">
+      <span class="question-text">⏱️ What is the typical turnaround time?</span>
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <div class="answer-content">
+        <p><strong>Custom tailoring:</strong> 3 to 5 weeks depending on design complexity and fabric availability.</p>
+        <p><strong>Alterations & repairs:</strong> 3 to 7 days (small fixes can be done in 24-48 hours).</p>
+        <p><strong>Rush orders:</strong> Need your outfit urgently? Contact us directly – we offer expedited services for an additional fee. We always communicate clear timelines upfront so you can plan with confidence.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ 5 -->
+  <div class="faq-item">
+    <button class="faq-question" aria-expanded="false">
+      <span class="question-text">📍 Where are you located? Can I book an appointment?</span>
+      <span class="faq-icon">+</span>
+    </button>
+    <div class="faq-answer">
+      <div class="answer-content">
+        <p>We are located at <strong>Ntankoful, Takoradi – Western Region, Ghana</strong>.</p>
+        <p><strong>To book an appointment:</strong></p>
+        <ul>
+          <li>📞 Call or WhatsApp: <strong>+233508208477</strong></li>
+          <li>📧 Email: <strong>afrakomahhanna@gmail.com</strong></li>
+          <li>📋 Use the contact form on our website</li>
+        </ul>
+        <p>Walk-ins are welcome, but we strongly recommend scheduling an appointment to guarantee dedicated time with our master tailors. <strong>Book today</strong> and let's create something extraordinary together.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    <section id="contact" class="contact-section"><div class="container"><h2 class="section-title">Connect With Us</h2><div class="contact-split"><div class="contact-left"><p>Fill out the form below — we'll help bring your vision to life.</p><form id="contactForm"><div class="form-group"><input type="text" placeholder="Full Name" required></div><div class="form-group"><input type="tel" placeholder="Phone" required></div><div class="form-group"><select><option>Interested in...</option><option>Custom Tailoring</option><option>Alterations</option><option>Wedding Dress</option><option>Repair</option></select></div><div class="form-group"><textarea rows="3" placeholder="Tell us your style idea..."></textarea></div><button type="submit">Send Message ✨</button></form></div><div class="contact-right"><h3>Contact Hafrak Fashion</h3><a href="tel:+233501234567" class="phone-link"><i class="fas fa-phone-alt"></i> +233 50 123 4567</a><p>📍 Ntankoful, Takoradi – Western Region, Ghana</p><div class="map-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3971.020374553913!2d-1.7568016259149736!3d4.919944894964209!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfd0814b8b9f5e6f7%3A0x2b0f6c8e9a4d3c1b!2sNtankoful%2C%20Takoradi!5e0!3m2!1sen!2sgh!4v1712345678901!5m2!1sen!2sgh" width="100%" height="240" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div></div></div></div></section>
+</main>
+
+<footer><div class="footer-social"><a href="https://wa.me/233508208477"><i class="fab fa-whatsapp"></i></a></a></i></a><a href="#"><i class="fab fa-tiktok"></i></a><a href="mailto:afrakomahhanna@gmail.com"><i class="fas fa-envelope"></i></a></div><p>© 2026 Hafrak Fashion — Bespoke African Wear, Tailoring & Alterations. Located in Ntankoful, Takoradi.</p></footer>
+
+<script>
+    let slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    if(slides.length){ slides[0].classList.add('active'); setInterval(()=>{ slides[currentSlide].classList.remove('active'); currentSlide=(currentSlide+1)%slides.length; slides[currentSlide].classList.add('active'); },5000); }
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navLinks = document.getElementById('navLinks');
+    const servicesDropdown = document.getElementById('servicesDropdown');
+    if(mobileToggle) mobileToggle.onclick = () => navLinks.classList.toggle('active');
+    function handleMobileDrop(drop) { if(!drop) return; const link = drop.querySelector(' > a'); if(window.innerWidth <= 768 && link) link.addEventListener('click', (e) => { e.preventDefault(); drop.classList.toggle('active'); }); }
+    handleMobileDrop(servicesDropdown);
+    window.addEventListener('resize', () => { if(window.innerWidth > 768 && servicesDropdown) servicesDropdown.classList.remove('active'); if(navLinks) navLinks.classList.remove('active'); });
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const targetId = this.getAttribute('href'); if(targetId === "#" || targetId === "") return; const target = document.querySelector(targetId); if(target) { e.preventDefault(); window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' }); if(navLinks.classList.contains('active')) navLinks.classList.remove('active'); } }); });
+    document.getElementById('contactForm')?.addEventListener('submit', (e) => { e.preventDefault(); alert('💫 Thank you! Hafrak Fashion will reach out soon.'); e.target.reset(); });
+    (function() {
+    // Ensure the DOM is fully loaded before running
+    document.addEventListener('DOMContentLoaded', function() {
+      // Select all FAQ items
+      const faqItems = document.querySelectorAll('.faq-item');
+      
+      // If no FAQ items found, exit
+      if (faqItems.length === 0) return;
+      
+      // Helper function: Close all FAQ items (reset icons to '+')
+      function closeAllFaqs() {
+        faqItems.forEach(item => {
+          // Remove active class
+          item.classList.remove('active');
+          
+          // Update aria-expanded on the button
+          const btn = item.querySelector('.faq-question');
+          if (btn) {
+            btn.setAttribute('aria-expanded', 'false');
+          }
+          
+          // Reset icon to '+'
+          const iconSpan = item.querySelector('.faq-icon');
+          if (iconSpan) {
+            iconSpan.textContent = '+';
+          }
+        });
+      }
+      
+      // Helper function: Open a specific FAQ item
+      function openFaqItem(item) {
+        // Add active class to show answer
+        item.classList.add('active');
+        
+        // Update aria-expanded
+        const btn = item.querySelector('.faq-question');
+        if (btn) {
+          btn.setAttribute('aria-expanded', 'true');
+        }
+        
+        // Change icon to '−' (minus)
+        const iconSpan = item.querySelector('.faq-icon');
+        if (iconSpan) {
+          iconSpan.textContent = '−';
+        }
+      }
+      
+      // Attach click event listener to each FAQ button
+      faqItems.forEach(item => {
+        const questionButton = item.querySelector('.faq-question');
+        
+        if (questionButton) {
+          // Remove any existing event listeners to avoid duplication
+          questionButton.removeEventListener('click', handleClick);
+          questionButton.addEventListener('click', handleClick);
+          
+          function handleClick(event) {
+            // Prevent any default behavior that might interfere
+            event.preventDefault();
+            event.stopPropagation();
+            
+            // Check if this FAQ is currently open
+            const isActive = item.classList.contains('active');
+            
+            if (isActive) {
+              // If open, close this one
+              item.classList.remove('active');
+              questionButton.setAttribute('aria-expanded', 'false');
+              const iconSpan = item.querySelector('.faq-icon');
+              if (iconSpan) iconSpan.textContent = '+';
+            } else {
+              // If closed, close all others first (accordion style - only one open at a time)
+              closeAllFaqs();
+              // Then open this one
+              openFaqItem(item);
+            }
+          }
+          
+          // Also add keyboard support (Enter and Space keys)
+          questionButton.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              this.click();
+            }
+          });
+        }
+      });
+      
+      // Optional: You can uncomment the line below if you want the first FAQ open by default
+      // if (faqItems.length > 0) {
+      //   openFaqItem(faqItems[0]);
+      // }
+      
+      console.log('FAQ Accordion initialized successfully — tap any question to see answer');
+    });
+  })();
+</script>
+</body>
+</html>
